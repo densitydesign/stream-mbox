@@ -1,4 +1,4 @@
-#to be ignored
+# to be ignored
 
 node_modules
-data
+data/*
