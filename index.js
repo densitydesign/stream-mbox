@@ -1,35 +1,42 @@
-var fs = require('fs'),
-    byline = require('byline'),
-    stream = byline(fs.createReadStream('mail.mbox', { encoding: 'utf8' })),
-    mails = [],
-    obj = {},
-    line2tsv = 'date\tfrom\tto\tlabel\tsubject\n';
+var nameMbox = 'mailbox';
 
-fs.writeFileSync('mail.tsv', line2tsv);
+var fs = require('fs')
+var MailParser  = require('mailparser').MailParser;
+var Mbox        = require('node-mbox');
+var mbox        = new Mbox('data/'+nameMbox+'.mbox');
 
-stream.on('data', function(line) {
-  //console.log(line);
+var header = 'date\tfrom\tto\tcc\tbcc\tsubject\n'
 
-	if (line.startsWith('From ')) {
-    var line2tsv = obj.date+'\t'+obj.from+'\t'+obj.to+'\t'+obj.googleLabel+'\t'+obj.subject+'\n';
-    fs.appendFile('mail.tsv', line2tsv, function (err) {
-      console.log('something went wrong');
-    });
-    console.log('done');
-		obj = {};
-	} else if (line.startsWith('X-Gmail-Labels: ')) {
-    obj.googleLabel = line;
-	} else if (line.startsWith('Date: ')) {
-    obj.date = line;
-	} else if (line.startsWith('From: ')) {
-    obj.from = line;
-	} else if (line.startsWith('To: ')) {
-    obj.to = line;
-	} else if (line.startsWith('Subject: ')) {
-    obj.subject = line;
-	}
+fs.writeFileSync('data/mailbox-'+nameMbox+'.tsv', header);
 
-	// mails.push(obj);
+// wait for message events
+mbox.on('message', function(msg) {
+  // parse message using MailParser
+  var mailparser = new MailParser({ streamAttachments : true });
+  mailparser.on('headers', function(headers) {
+    
+    // console.log('Date   :', headers.date);
+    // console.log('From   :', headers.from);
+    // console.log('To   :', headers.to);
+    // console.log('Cc   :', headers.cc);
+    // console.log('Bcc   :', headers.bcc);
+    // console.log('Subject:', headers.subject);
+    // console.log('References   :', headers.to);
+    // console.log('In reply to   :', headers.inReplyTo, '\n');
 
-  // console.log('');
+    var tsv = headers.date+'\t'+headers.from+'\t'+headers.to+'\t'+headers.cc+'\t'+headers.bcc+'\t'+headers.subject+'\n'
+
+    fs.appendFileSync('data/mailbox-'+nameMbox+'.tsv', tsv)
+
+  });
+
+  mailparser.write(msg);
+  mailparser.end();
 });
+
+mbox.on('end', function() {
+  console.log('done - CTRL + C to quit');
+});
+
+// pipe stdin to mbox parser
+process.stdin.pipe(mbox);

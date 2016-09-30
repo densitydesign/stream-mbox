@@ -1,0 +1,24 @@
+{
+  "name": "mbox-parser",
+  "version": "1.0.0",
+  "description": "a parser for .mbox files, made for DensityDesign Final Sinstesys Studio students",
+  "main": "index.js",
+  "dependencies": {
+    "mailparser": "^0.6.1",
+    "node-mbox": "^0.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mitch90/stream-mbox.git"
+  },
+  "author": "iosonosempreio",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Mitch90/stream-mbox/issues"
+  },
+  "homepage": "https://github.com/Mitch90/stream-mbox#readme"
+}
