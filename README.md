@@ -4,9 +4,10 @@
 
 1. Clone the repo: `git clone https://github.com/robertklep/node-mbox.git`
 2. Install dependencies: `npm install`
-3. Place your `.mbox` file into the `data` folder
-4. Open the Terminal and navigate to the repo folder: `cd to/repo`
-6. Run: `node index.js
+3. create `data` folder: `mkdir data`
+4. Place your `.mbox` file into the `data` folder
+5. Open the Terminal and navigate to the repo folder: `cd to/repo`
+6. Run: `node index.js`
 
 
 ### Requirements
