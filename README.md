@@ -1,21 +1,16 @@
 # Node.js .mbox parser
 
 ### How to use
-
-1. Clone the repo: `git clone https://github.com/robertklep/node-mbox.git`
-2. Install dependencies: `npm install`
+0. Install [node.js](https://nodejs.org) and [Github Desktop](https://desktop.github.com)
+1. Clone the repo: click on the green button **Clone or Download** > **Open in Desktop**
+2. Open the terminal and navigate to the repo: `cd path/to/repo/`
+3. Install dependencies: `npm install`
 3. create `data` folder: `mkdir data`
 4. Place your `.mbox` file into the `data` folder
-5. Open the Terminal and navigate to the repo folder: `cd to/repo`
 6. Run: `node index.js`
-
-
-### Requirements
-
-- Node.js
 
 ### Credits
 Tiny scripts realised for student of DensityDesign Integrated Course Final Synthesis Studio.
 Made use of cool stuff:
-- MailParser
-- node-mbox
+- [MailParser](https://github.com/andris9/mailparser)
+- [node-mbox](https://github.com/robertklep/node-mbox)
