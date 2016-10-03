@@ -9,8 +9,8 @@ This script accepts a `.mbox` archive as input and parses it returning the follo
 	- subject
 	- gmail_label
 	- attachments
-- a folder where it saves messages attachments
-	- data/attachments-my-messages.mbox-mailbox
+<!-- - a folder where it saves messages attachments
+	- data/attachments-my-messages.mbox-mailbox -->
 
 ### How to use
 0. Install [node.js](https://nodejs.org) and [Github Desktop](https://desktop.github.com)

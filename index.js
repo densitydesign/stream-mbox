@@ -23,14 +23,14 @@ mbox.on('message', function(msg) {
     });
 
     // Save attached files
-    mailparser.on("attachment", function(attachment, mail){
-        var folder = 'data/attachments-'+nameMbox+'-mailbox/'
-        if (!fs.existsSync(folder)){
-            fs.mkdirSync(folder);
-        }
-        var output = fs.createWriteStream(folder + attachment.generatedFileName);
-        attachment.stream.pipe(output);
-    });
+    // mailparser.on("attachment", function(attachment, mail){
+    //     var folder = 'data/attachments-'+nameMbox+'-mailbox/'
+    //     if (!fs.existsSync(folder)){
+    //         fs.mkdirSync(folder);
+    //     }
+    //     var output = fs.createWriteStream(folder + attachment.generatedFileName);
+    //     attachment.stream.pipe(output);
+    // });
 
     // Once the whole message has been read, extract the attachment file names
     mailparser.on("end", function(mail_object){
