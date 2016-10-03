@@ -11,13 +11,13 @@ fs.writeFileSync('data/parsed-'+nameMbox+'.tsv', header);
 
 // Wait for "message events"
 mbox.on('message', function(msg) {
-    
+
     var tsv = '';
 
     // parse message using MailParser
     var mailparser = new MailParser({ streamAttachments : true });
 
-    // One the hedaers have been detected, get basic information
+    // One the headers have been detected, get basic information
     mailparser.on('headers', function(headers) {
         tsv += headers.date+'\t'+headers.from+'\t'+headers.to+'\t'+headers.cc+'\t'+headers.bcc+'\t'+headers.subject+'\t'+headers['x-gmail-labels']
     });
@@ -43,16 +43,16 @@ mbox.on('message', function(msg) {
                     attachmentsData += '"'+attachment.fileName+'", '
                 } else {
                     attachmentsData += '"'+attachment.fileName+'"'
-                }  
+                }
             })
-        }    
+        }
         tsv += '\t'+attachmentsData
 
         // Close the line before appending
         tsv += '\n'
         // Append line to dataset
         fs.appendFileSync('data/parsed-'+nameMbox+'.tsv', tsv)
-        
+
     });
 
     mailparser.write(msg);
